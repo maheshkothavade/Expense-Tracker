@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import { APIUrl, handleError, handleSuccess } from '../utils';
-
-function Login() {
+                                       
+function Login() {                  // 47:00
 
     const [loginInfo, setLoginInfo] = useState({
         email: '',
@@ -55,7 +55,7 @@ function Login() {
             handleError(err);
         }
     }
-
+ 
     return (
         <div className='container'>
             <h1>Login</h1>
@@ -90,4 +90,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Login;

@@ -63,10 +63,41 @@ body{
 button{
   background-color: purple;
   border: none;
-  font-size: 20px;
+  font-size: 15px;
   color: white;
   border-radius: 5px;
-  padding: 10px;
+  padding: 8px;
   cursor: pointer;
   margin: 10px 0;
+}
+
+/* CSS for expense tracker*/
+
+.user-section{
+  display: flex;
+  justify-content: space-between;
+
+
+}
+.expense-list{
+  font-family: Arial, sans-serif;
+}
+.expense-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+.expense-description{
+  font-weight: bold;
+
+}
+.delete-button{
+  background-color: #e74c3c;
+  color:white;
+  border:none;
+  padding:4px 7px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 3px;
 }

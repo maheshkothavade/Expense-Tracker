@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import ExpensesTable from './ExpensesTable';
 import { APIUrl, handleError, handleSuccess } from '../utils';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';    // for notifications of success and error
 
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState('');
-    const [products, setProducts] = useState('');
+    const [expenses,setExpenses] = useState([]);
+    
     const navigate = useNavigate();
     useEffect(() => {
         setLoggedInUser(localStorage.getItem('loggedInUser'))
@@ -20,42 +22,42 @@ function Home() {
         }, 1000)
     }
 
-    const fetchProducts = async () => {
+    const fetchExpenses = async () => {
         try {
-            const url = `${APIUrl}/products`;
+            const url = `${APIUrl}/expenses`;
             const headers = {
                 headers: {
                     'Authorization': localStorage.getItem('token')
                 }
             }
+            
             const response = await fetch(url, headers);
+            if(response.status === 403){
+                navigate('/login');
+                return;
+            }
             const result = await response.json();
-            console.log(result);
-            setProducts(result);
+            console.log(result.data);
+            setExpenses(result.data);
         } catch (err) {
             handleError(err);
         }
     }
     useEffect(() => {
-        fetchProducts()
+        fetchExpenses()
     }, [])
 
     return (
         <div>
-            <h1>Welcome {loggedInUser}</h1>
-            <button onClick={handleLogout}>Logout</button>
-            <div>
-                {
-                    products && products?.map((item, index) => (
-                        <ul key={index}>
-                            <span>{item.name} : {item.price}</span>
-                        </ul>
-                    ))
-                }
-            </div>
+           <div className='user-section'>
+              <h1>Welcome {loggedInUser}</h1>
+              <button onClick={handleLogout}>Logout</button>
+           </div>
+           <ExpensesTable expenses={expenses}/>
+            
             <ToastContainer />
         </div>
     )
 }
 
-export default Home
+export default Home;
