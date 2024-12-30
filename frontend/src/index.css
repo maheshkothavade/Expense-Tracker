@@ -101,3 +101,22 @@ button{
   cursor: pointer;
   border-radius: 3px;
 }
+
+.amounts-container{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  margin:20px 0;
+  font-family: Arial, sans-serif;
+  font-size: 3px;
+
+}
+.income-amount{
+  color:#27ae60;
+  font-weight: bold;
+}
+.expense-amount{
+  color:#27ae60;
+  font-weight: bold;
+  
+}

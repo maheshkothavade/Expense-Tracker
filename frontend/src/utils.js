@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; // used for displaying messages like error,success
 
 export const handleSuccess = (msg) => {
     toast.success(msg, {

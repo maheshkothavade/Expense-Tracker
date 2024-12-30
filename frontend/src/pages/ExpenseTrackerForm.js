@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { handleError } from '../utils';
 
-function ExpenseTrackerForm() {
+function ExpenseTrackerForm(addExpenses) {
 
     const[expenseInfo,setExpenseInfo] = useState({text:'',amount:''});
     const handleChange = (e) => {
@@ -10,12 +11,29 @@ function ExpenseTrackerForm() {
         copyExpenseInfo[name] = value;
         setExpenseInfo(copyExpenseInfo);
     }
+
+    const handleExpense = (e) =>{
+        e.preventDefault();        // Form will not refresh again 
+        console.log(expenseInfo);
+        const {text,amount} = expenseInfo;
+        if(!text || !amount){
+            handleError('All fields are required'); // call the function when fields are req
+            return;
+        }
+        setTimeout(()=>{
+            setExpenseInfo({text:'',amount:''})
+        },1000);
+        
+        addExpenses(expenseInfo);
+
+
+    }
   return (
     <div className='container'>
-                <h1>Login</h1>
+                <h1>ExpenseTracker</h1>
                 <form onSubmit={handleExpense}>
                     <div>
-                        <label htmlFor='email'>Email</label>
+                        <label htmlFor='email'>Expense description</label>
                         <input
                             onChange={handleChange}
                             type='text'
@@ -42,4 +60,4 @@ function ExpenseTrackerForm() {
   )
 }
 
-export default ExpenseTrackerForm
+export default ExpenseTrackerForm;

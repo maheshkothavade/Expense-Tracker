@@ -6,6 +6,7 @@ const AuthRouter = require('./Routes/AuthRouter');
 const ProductRouter = require('./Routes/ProductRouter');
 const ExpenseRouter = require('./Routes/ExpenseRouter');
 
+const ensureAuthenticated = require('./Middlewares/Auth');
 
 
 require('dotenv').config();
