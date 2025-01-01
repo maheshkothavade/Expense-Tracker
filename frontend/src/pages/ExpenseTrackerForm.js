@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { handleError } from '../utils';
 
-function ExpenseTrackerForm(addExpenses) {
+function ExpenseTrackerForm({addExpenses}) {
 
     const[expenseInfo,setExpenseInfo] = useState({text:'',amount:''});
     const handleChange = (e) => {

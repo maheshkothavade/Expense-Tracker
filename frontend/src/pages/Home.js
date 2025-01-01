@@ -17,19 +17,37 @@ function Home() {
         setLoggedInUser(localStorage.getItem('loggedInUser'))
     }, [])
 
-    useEffect(()=>{ 
-        const amounts = expenses.map((item)=>item.amount);
+    useEffect(() => {
+        const amounts = expenses.map((item) => item.amount);
         console.log(amounts);
-        const income = amounts.filter(item=> item > 0)
-          .reduce((acc,item)=>(acc+= item),0);
+    
+        const income = amounts.filter((item) => item > 0)
+            .reduce((acc, item) => acc + item, 0);
+        console.log('income:', income);
+    
+        const exp = amounts.filter((item) => item < 0)
+            .map((item) => item * -1)   
+            .reduce((acc, item) => acc + item, 0);
+        console.log('exp', exp);
+    
+        setIncomeAmt(income);
+        setExpenseAmt(exp);
+    }, [expenses]);
+    
 
-          console.log('income:' ,income);
-          const exp = amounts.filter(item=> item < 0)* -1   
-          .reduce((acc,item)=>(acc+= item),0);
-          console.log('exp',exp);
-          setIncomeAmt(income);
-          setExpenseAmt(exp);
-    },[expenses])
+    // useEffect(()=>{ 
+    //     const amounts = expenses.map((item)=>item.amount);
+    //     console.log(amounts);
+    //     const income = amounts.filter(item=> item > 0)
+    //       .reduce((acc,item)=>(acc+= item),0);
+
+    //       console.log('income:' ,income);
+    //       const exp = amounts.filter(item=> item < 0)* -1   
+    //       .reduce((acc,item)=>(acc+= item),0);
+    //       console.log('exp',exp);
+    //       setIncomeAmt(income);
+    //       setExpenseAmt(exp);
+    // },[expenses])
 
     const handleLogout = (e) => {
         localStorage.removeItem('token');
@@ -61,32 +79,62 @@ function Home() {
             handleError(err);
         }
     }
+    // const addExpenses = async (data) => {
+    //     try {
+    //         const url = `${APIUrl}/expenses`;
+    //         const headers = {
+    //             headers: {
+    //                 'Authorization': localStorage.getItem('token'),
+    //                 'content-Type' : 'application/json'
+    //             },
+    //             method:'POST',
+    //             body:JSON.stringify.data
+
+    //         }
+            
+    //         const response = await fetch(url, headers);
+    //         if(response.status === 403){
+    //             navigate('/login');
+    //             return;
+    //         }
+    //         const result = await response.json();
+    //         console.log(result.data);
+    //         setExpenses(result.data);
+    //         handleSuccess(result.message);
+    //     } catch (err) {
+    //         handleError(err);
+    //     }
+    // }
+
     const addExpenses = async (data) => {
         try {
             const url = `${APIUrl}/expenses`;
             const headers = {
                 headers: {
                     'Authorization': localStorage.getItem('token'),
-                    'content-Type' : 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                method:'POST',
-                body:JSON.stringify.data
-
-            }
-            
+                method: 'POST',
+                body: JSON.stringify(data),  // Ensure the expense data is passed
+            };
+    
             const response = await fetch(url, headers);
-            if(response.status === 403){
+            if (response.status === 403) {
                 navigate('/login');
                 return;
             }
             const result = await response.json();
             console.log(result.data);
-            setExpenses(result.data);
+    
+            // Update expenses by adding the new expense
+            setExpenses((prevExpenses) => [...prevExpenses, result.data]);  // Append new expense
+    
             handleSuccess(result.message);
         } catch (err) {
             handleError(err);
         }
-    }
+    };
+    
     useEffect(() => {
         fetchExpenses()
     }, [])

@@ -12,6 +12,7 @@ const signupValidation = (req, res, next) => {
             .json({ message: "Bad request", error })
     }
     next();
+    
 }
 const loginValidation = (req, res, next) => {
     const schema = Joi.object({

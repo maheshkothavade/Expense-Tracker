@@ -22,4 +22,4 @@ function RefrshHandler({ setIsAuthenticated }) {
     )
 }
 
-export default RefrshHandler
+export default RefrshHandler;

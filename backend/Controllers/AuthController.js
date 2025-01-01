@@ -59,6 +59,7 @@ const login = async (req, res) => {
                 name: user.name
             })
     } catch (err) {
+        console.error("Error in login route:", err.message); // Logs the error message
         res.status(500)
             .json({
                 message: "Internal server errror",

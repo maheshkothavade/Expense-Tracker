@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ExpenseDetails(incomeAmt,expenseAmt) {
+function ExpenseDetails({incomeAmt,expenseAmt}) {
   return (
     <div>
        <div>
@@ -18,4 +18,4 @@ function ExpenseDetails(incomeAmt,expenseAmt) {
   )
 }
 
-export default ExpenseDetails
+export default ExpenseDetails;
