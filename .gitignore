@@ -10,6 +10,7 @@
 # testing
 /coverage
 
+#Access
 .env
 # production
 /build
