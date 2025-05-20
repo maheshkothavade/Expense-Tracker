@@ -16,4 +16,16 @@
 * Mongoose: An ODM (Object Data Modeling) library for MongoDB to model application data.
 * JSON Web Tokens (JWT): Token-based authentication for secure user login sessions.
 
+## Screenshots attached
+
+![Screenshot (387)](https://github.com/user-attachments/assets/21816eb3-96d1-48e6-8727-f003ffc50122)
+
+![Screenshot (386)](https://github.com/user-attachments/assets/cabdc0d8-d239-4c64-81ce-adf62f55c283)
+
+![Screenshot (388)](https://github.com/user-attachments/assets/c81779de-f5d0-41ee-bed6-ea89f0a91d11)
+
+![Screenshot (389)](https://github.com/user-attachments/assets/810a8584-9376-4a0c-b0a0-bd145f40d453)
+
+
+
 
