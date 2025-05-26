@@ -1,4 +1,4 @@
-# Finance Tracker web application
+# Finance Tracker web application(Mern_Application)
 
  This web application built to help users manage personal finances by recording income and expense transactions. The app allows users to add, edit, and delete individual transactions, providing a straightforward way to maintain financial records. It includes user authentication (login/signup) to ensure data privacy, and features a clean, simple user interface that works seamlessly on desktop devices(at this stage). 
  
